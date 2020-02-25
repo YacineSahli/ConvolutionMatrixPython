@@ -1,5 +1,6 @@
 # ConvolutionMatrixPython
 How to use: 
+
   -```python code/Mainwindow.py```
   
   -Select an image by clicking on the bottom left button.

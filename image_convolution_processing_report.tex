@@ -1,0 +1,156 @@
+\documentclass[]{article}
+% Use utf-8 encoding for foreign characters
+\usepackage[utf8]{inputenc}
+
+
+\usepackage{datetime2}
+\usepackage{color}
+
+\newcommand{\placeholder}[1]{{\noindent \color{red}[ #1 ]}}
+
+\begin{document}
+
+%\frontmatter          % for the preliminaries
+%\pagestyle{headings}  % switches on printing of running heads
+%\mainmatter              % start of the contributions
+
+\title{
+{\Huge Matrix Convolution Image Processing}\\
+Multimedia Information System: Final Project Report\\}
+
+
+\author{
+\textbf{Sahli Yacine}\\
+E10715005\\\
+}
+
+
+\date{{2018-2019}\\
+\vspace{1cm}
+National Taiwan University of Science and Technology(NTUST)}
+
+\maketitle              % typeset the title of the contribution
+
+\bigskip
+\begin{center} \today \end{center}
+\begin{abstract}
+This \emph{implementation report} is handed for the course \textsf{MI5300701} "Multimedia Information Systems", given by the professor \emph{Yáng Chuán Kǎi} during the academic year  \emph{2018-2019} . \\    The goal of this report is to explain how my final project about Convolution Matrix Image Processing work. \\    I will start by explaining what is the goal of this project and the concept of convolution matrix image processing. \\    Then I will explain each functionality of my program and i will finish by enumerating what is yet to improve.
+\end{abstract}
+
+\newpage
+\contentsline {section}{\numberline {1}Goals}{3}
+\contentsline {section}{\numberline {2}What is a convolution Matrix(Kernel) ?}{4}
+\contentsline {subsection}{\numberline {2.1}Edge handling}{4}
+\contentsline {subsection}{\numberline {2.2}Normalization}{4}
+\contentsline {section}{\numberline {3}How to use the program ?}{5}
+\contentsline {section}{\numberline {4}What can be done ?}{6}
+\contentsline {section}{\numberline {5}To be improved}{7}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Goals}
+List of the goals I fixed myself with a grade on 5 according to the accomplishment of each one of them:
+\begin {itemize}
+	\item The program should be able to apply Convolution Matrix to images and save the modification in a new image. 5/5
+	\item The user interface should be easy to use and simple. 4/5
+	\item Anyone should be able to use this application. 3/5
+	\item A set of comprehensible kernels should be available. 5/5
+	\item At least 2 different ways to apply the kernel on the border's pixel should be given to the user. 5/5
+	\item Possibility to transform the image in a gray-scale. 5/5
+	\item It should work on Windows, MacOs and Linux. 5/5
+
+\end {itemize}
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{What is a convolution Matrix(Kernel) ?}
+In image processing, a convolution matrix or convolution kernel is a small matrix, usually 5x5 or 3x3, used for
+image transformation such as embossing, blurring, sharpening, etc... \\
+It works by applying a convolution between the kernel and an image.
+\\\\
+Convolution is the process of adding each element of the image to its local neighbors, weighted by the kernel.\\
+
+\subsection{Edge Handling}
+
+\begin{itemize}
+	\item \textbf{Extend}\\
+The value of the closest pixel is extended beyond the border.
+	\item \textbf{Wrap}\\
+The value is taken from the opposite border.
+	\item \textbf{Mirror}\\
+The value is taken from inside the picture as in a mirror, for example, if the pixel is 3 pixel out of the picture, we will take the
+value of the pixel which is 3 pixel inside the picture from the border.
+\end{itemize}
+
+
+\subsection{Normalization}
+Normalization consist in the division of each element in the kernel by the sum of all kernel elements,
+so that the sum of the elements of a normalized kernel is one. We do this so that the average pixel in
+the modified image is as bright as the average pixel in the original image.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{How to use the program ?}
+First, you should choose an image on your computer by clicking "Select an image" button, then you can select a convolution matrix preset 
+in the "Presets" option bar at the top of the application's window.
+\\\\
+If you want, you can input you own convolution matrix manually in the "MATRIX" frame and input the according divisor 
+necessary in the "Divisor" input box
+\\\\
+Then, you can check the "Grayscale" check-box if you would like your output image to be gray-scale.
+\\\\
+Choose how pixels at the border of the image should be handled in the "Border" frame by clicking on the according radio-box.
+\\\\
+You can now press preview to get a small, but very quickly computed, thumbnail of the output image.
+\\\\
+Before saving and starting the computation, you should choose whether you want the image to be scaled down to 1024 on its largest
+dimension so that the computation is not too long.  \\The aspect ratio will be guaranteed !
+\\\\
+Then you can save the image and choose where you want to save it, the calculation will be done in a separate thread so that the graphical
+user interface stays responsive.
+
+\newpage
+
+\section{What can be done ?}
+A lot of things can be done with convolution Matrix, such as : 
+\\
+\begin {itemize}
+	\item Blurring
+	\item Sharpening
+	\item Unsharpening
+	\item Embossing
+	\item Edge detection
+	\item Edge enhancing
+	\item Denoising
+	\item It can help us understand convolution in general and apply it to other domain such as Machine Learning
+\end {itemize}
+
+The user is free to experiment his own Matrixes in the program. 
+\\\\
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{To be improved}
+\begin {itemize}
+	\item Use numpy module to make the process faster as using python's list on large matrix is not very efficient.
+	\item Rewrite from scratch in a lower level programming language like C the computing part for faster calculation by using python extension.
+	\item Propose the user to apply the convolution kernel in a set of specifics color channels.
+	\item Put the preview image directly into the application window instead of opening a new window.
+	\item Let the user resize the image in his desired way.
+	\item Make the user interface more user friendly and eye catching.
+	\item Enabling the possibility to process multiple images at the same time in different threads.
+	\item Add a cropping functionality
+	\item Make the program compute the divisor by itself instead of asking for it as an input. ( but choosing the divisor can also be useful for the user )
+	\item Implement a live preview, maybe with a refresh rate of 1 or 2 times every 5 seconds.
+	\item Rewrite the user interface so that it looks better when resizing the window.
+\end {itemize}
+
+\end{document}
